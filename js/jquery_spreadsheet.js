@@ -98,7 +98,7 @@ $.fn.spreadsheet = function ( options )
     var td = $( sTD );
     
     // double-click
-    td.live( "dblclick", function ( event ) { 
+    td.on( "dblclick", function ( event ) { 
       destroyContextMenu();
       unSelectRow( oTable );
       unSelectColumn( oTable );
@@ -116,7 +116,7 @@ $.fn.spreadsheet = function ( options )
     } );
  
       // click
-     td.live( "click", function ( event ) { 
+     td.on( "click", function ( event ) { 
         destroyContextMenu();
         unSelectRow( oTable );
         unSelectColumn( oTable );
@@ -178,7 +178,7 @@ $.fn.spreadsheet = function ( options )
       } );
       
       // right mouse click
-      td.live( "contextmenu", function ( event ) { 
+      td.on( "contextmenu", function ( event ) { 
          if ( !settings.context_menu ) {
           return true;
          }
@@ -215,19 +215,19 @@ $.fn.spreadsheet = function ( options )
       var id;
       
       id = oTable.attr( 'id' ) + "_cell";
-      $( "#" + id ).live( "blur", function () { 
+      $( "#" + id ).on( "blur", function () { 
         saveCell();
       } );
       
       // keypress
-      $( "#" + id ).live( "keypress", function ( event ) {
+      $( "#" + id ).on( "keypress", function ( event ) {
         if ( event.which == 13 ) {
           saveCell();
         }
       } );
       
        id = oTable.attr( 'id' ) + "_menu";
-       $( "ul#" + id + " li").live( "click", function ( event ) { 
+       $( "ul#" + id + " li").on( "click", function ( event ) { 
         clearTimeout( timeout );
         doMenuAction( oTable, $( this ).text() );
         oTable.focus();
@@ -235,7 +235,7 @@ $.fn.spreadsheet = function ( options )
       } );
       
       // resizing
-      $( 'div.drag_handle' ).live( "mousedown", function ( event ) { 
+      $( 'div.drag_handle' ).on( "mousedown", function ( event ) { 
         if ( event.which == 1 ) {
           var draghandle = $( this );
           draghandle.attr( "dragging", true );
@@ -260,7 +260,7 @@ $.fn.spreadsheet = function ( options )
         }
       } );
       
-      $('div.drag_handle').live( "hover", function () {
+      $('div.drag_handle').on( "hover", function () {
             $(this).css( 'cursor', 'crosshair' );
           },         
          function () {     
